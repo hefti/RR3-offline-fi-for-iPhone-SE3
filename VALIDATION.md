@@ -1,5 +1,11 @@
 # Validation record
 
+## Documentation review — 13 October 2026
+
+The owner's latest feedback is that the installation works, with perhaps 1–2 black backgrounds that are acceptable. The earlier inventory count (24,791 present / 24,792 listed) and missing-video record are retained in [STATUS.md](STATUS.md), with optional follow-up in [ROADMAP.md](ROADMAP.md).
+
+This review inspected the repository, existing documentation, issue list, public repository Projects page and `v1.0-se3` release metadata. The release metadata still lists the reference IPA and the SHA-256 recorded below. The release binary/cache were not downloaded or rehashed, no resource inventory was re-run, and no game/device test or rebuild was performed. The historical local checks below are retained from the existing record; they were not repeated in this documentation review.
+
 ## Device result
 
 Date: **13 October 2026**. Device: **iPhone SE (3rd generation)**. Reported OS: **iOS 26.6.1**. Game: **Real Racing 3 14.0.1**, using the preserved RR3 DevOps v1.0 package/cache.

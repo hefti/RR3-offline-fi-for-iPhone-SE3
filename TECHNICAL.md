@@ -4,6 +4,8 @@
 
 The preserved cache's base ledger listed 24,792 paths, with only one missing promotional video. That did not establish coverage for every device-specific GUI family. The archive had 2,758 high-resolution GUI files and only four streamed `960x640` files; the IPA also contained a separate bundled GUI set.
 
+The missing video is `SpeedRush_TV_commercial.mp4`; its exact owner-supplied manifest record and evidence limits are in [STATUS.md](STATUS.md#missing-promotional-video). The current installation is reported working. The accepted black backgrounds have not been traced to this video.
+
 The diagnostic SE 3 run showed `Res base: 1334x750` and only `gui_assets/960x640/` and `gui_assets/480x320/` in the automatic resolution order. The iPad-derived fallback settings were present, yet screen-dependent resource selection still excluded the larger family.
 
 Eight nonzero download groups accounted for 150 missing small-resolution files and 35,477,802 download bytes (33.83 MiB). Every corresponding high-resolution path existed in the supplied archive set. This explains why a resolution-selection fix could remove this startup block without converting thousands of textures.

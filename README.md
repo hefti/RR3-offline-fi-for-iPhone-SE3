@@ -1,6 +1,14 @@
-# rr3
+# RR3 offline fix for iPhone SE 3
 
 **RR3 offline - fix for iPhone SE3** fixes the **33 MB additional-data download stall** in the preserved Real Racing 3 14.0.1 iOS package.
+
+## Current working baseline — 13 October 2026
+
+**The owner reports that the current installation works**, with perhaps 1–2 black backgrounds that they consider acceptable. Preserve this working setup; resolving those cosmetic gaps or completing the asset inventory is optional and does not require reinstalling or replacing the current cache.
+
+The earlier inventory reported **24,791 of 24,792 resources present**. The one missing file is `SpeedRush_TV_commercial.mp4`, referenced by `asset_list_quest_speedrush_assets.txt`. Its relationship to the black backgrounds is unknown. These are prior findings and owner feedback, not a new device test or resource scan.
+
+See [current status and preservation](STATUS.md), the [optional roadmap](ROADMAP.md), and [tracked tasks](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/issues). The existing `v1.0-se3` release remains the reference IPA; this documentation update changes no game files or release assets.
 
 ## Download and install — no Python needed
 
@@ -38,6 +46,8 @@ The Git tree contains source code and documentation. The ready-made IPA is attac
 
 | Document | Purpose |
 |---|---|
+| [STATUS.md](STATUS.md) | Working baseline, accepted gaps, exact missing-video record and preservation procedure |
+| [ROADMAP.md](ROADMAP.md) | Optional restoration/graphics tasks and criteria for accepting a future change |
 | [INSTALLATION.md](INSTALLATION.md) | Download, Sideloadly settings, cache import and offline test |
 | [BUILD.md](BUILD.md) | Optional: reproduce the IPA from the original upstream input |
 | [TECHNICAL.md](TECHNICAL.md) | Failure mechanism, exact patch locations, diagnostic behavior and format findings |

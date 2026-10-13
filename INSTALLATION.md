@@ -1,5 +1,7 @@
 # Install on iPhone SE 3
 
+**Already working?** Keep your current installation and imported cache. The owner accepts the occasional black backgrounds; the missing promotional video is optional restoration work. This guide is for a needed installation or a deliberate update. See [current status](STATUS.md) before changing a working setup.
+
 **No Python, Xcode or compiling is needed to install the ready-made IPA.** You need your iPhone SE 3, a computer with [Sideloadly](https://sideloadly.io/), a USB cable and your Apple ID.
 
 ## 1. Download the fixed IPA
