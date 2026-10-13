@@ -51,4 +51,4 @@ Raw logs are excluded because they contain device/container paths and unnecessar
 | Initial Diagnostic v1 IPA | `0607d6b833b8f1339dd1f7de06a8d3c5f6f3d6b82fc5f0ccb5717dfe17ccdba9` |
 | Initial HD v1 IPA reported working | `9462989f1ba03c1130ea589f7b88cff03013177f8813e8075598552392793d65` |
 
-These hashes identify the examined artifacts; the copyrighted game/cache and generated full IPAs are not included in Git. Current local build hashes are written to `dist/SHA256SUMS.txt`.
+These hashes identify the examined artifacts. The [v1.0-se3 release](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/releases/tag/v1.0-se3) provides the exact initial HD v1 IPA reported working, with SHA-256 `9462989f1ba03c1130ea589f7b88cff03013177f8813e8075598552392793d65`. Its embedded build-time metadata predates the owner's device test; the later reported result is recorded above. Full IPAs and the cache are not stored in the Git tree. Current local rebuild hashes are written to `dist/SHA256SUMS.txt`.

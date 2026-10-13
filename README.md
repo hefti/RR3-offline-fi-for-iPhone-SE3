@@ -1,27 +1,27 @@
 # rr3
 
-**RR3 offline - fix for iPhone SE3** — an exact-build GUI resource-selection fix for Real Racing 3 14.0.1, based on the RR3 DevOps v1.0 Production Quality iOS package.
+**RR3 offline - fix for iPhone SE3** fixes the **33 MB additional-data download stall** in the preserved Real Racing 3 14.0.1 iOS package.
 
-An iPhone SE (3rd generation) could launch the preserved game but stopped at a **33 MB additional-data download**. Its 1334×750 screen made the game select the mostly absent `960x640` GUI assets, even though the imported cache contained their `2048x1536` counterparts.
+## Download and install — no Python needed
 
-This patch makes the atlas loader and GUI download-list filter use the available high-resolution family together. **The owner reported successful launch, a race, and an offline cold restart on an iPhone SE 3 running iOS 26.6.1.** This is a one-device result, not a universal compatibility guarantee.
+**[Download the ready-made fixed IPA](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/releases/download/v1.0-se3/RR3-SE3-HD-Test-v1.ipa)** · about 1.37 GB · [Release notes and checksum](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/releases/tag/v1.0-se3)
 
-## Get started
+> **Installation base:** [Indegosblade/RR3-DevOps v1.0 Production Quality](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-4k), with the matching [v1.0 asset cache](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-cache). The fixed IPA already includes that base and the SE 3 fix. Install the fixed IPA directly; no separate installation of the original IPA is needed.
 
-1. Obtain the original [RR3 DevOps Production Quality IPA](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-4k) and its [asset cache](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-cache).
-2. On a Mac, build your patched IPA from that original input.
-3. Re-sign and sideload it with your usual Apple account.
-4. Keep or import the matching cache and test offline.
+1. Download the fixed IPA above and load it into [Sideloadly](https://sideloadly.io/).
+2. Connect your iPhone SE 3 and install. For an update, keep the same Apple ID and bundle-ID setting, and keep the existing app installed.
+3. Keep your already imported cache. For a fresh installation, import `Caches_ipastore.zip` through the game's three-finger double-tap menu.
+4. Reopen the game and try a race offline.
 
-**[Complete build and installation guide → INSTALLATION.md](INSTALLATION.md)**
+**[Simple installation guide, including Sideloadly settings →](INSTALLATION.md)**
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python build.py --input "/path/to/RR3-DevOps-v1.0-Production-Quality.ipa"
-```
+Python and Apple build tools are only needed if you choose to [build the IPA yourself](BUILD.md).
 
-The default output is `dist/RR3-SE3-HD-Test-v1.ipa`. It includes the diagnostic logger used during the successful test. The `Test` filename is retained to identify this first verified version; the project does not claim broader production validation.
+## What this fixes
+
+The SE 3's 1334×750 screen made the game select the mostly absent `960x640` GUI assets, even though the imported cache contained their `2048x1536` counterparts. This patch makes the atlas loader and GUI download-list filter use the available high-resolution family together.
+
+**The owner reported successful launch, a race, and an offline cold restart on an iPhone SE 3 running iOS 26.6.1.** This is a one-device result. The release contains the same HD v1 IPA used for that test, including its local diagnostic logger. The `Test` filename identifies this first verified version.
 
 ## What is included
 
@@ -32,13 +32,14 @@ The default output is `dist/RR3-SE3-HD-Test-v1.ipa`. It includes the diagnostic 
 - 50 emulated ARM64 checks and a native Mac import-hook test.
 - English installation, technical and validation documentation.
 
-This repository contains **source code and documentation**, not the game IPA, the multi-gigabyte cache, save files, credentials or raw device logs. The matching game/cache must be supplied separately. Building does not install anything on a device.
+The Git tree contains source code and documentation. The ready-made IPA is attached separately to the release; the multi-gigabyte cache is linked from upstream. Save files, credentials and raw device logs are excluded.
 
 ## Documentation
 
 | Document | Purpose |
 |---|---|
-| [INSTALLATION.md](INSTALLATION.md) | Inputs, building, signing, cache import, testing and rollback |
+| [INSTALLATION.md](INSTALLATION.md) | Download, Sideloadly settings, cache import and offline test |
+| [BUILD.md](BUILD.md) | Optional: reproduce the IPA from the original upstream input |
 | [TECHNICAL.md](TECHNICAL.md) | Failure mechanism, exact patch locations, diagnostic behavior and format findings |
 | [VALIDATION.md](VALIDATION.md) | Device result, baseline evidence, hashes and validation limits |
 | [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) | Upstream credits and licenses |

@@ -43,6 +43,14 @@ Relevant file probes and engine messages are written to the app's Documents dire
 
 The HD target is local to the list-filter stub, so the logger can correctly continue to show global thresholds of `1334x750`. Likewise, automatic `Res order` output can still list smaller families even when the override directs actual atlas loads to `2048x1536`.
 
+## Reading the diagnostic log
+
+Logs are stored at `Documents/RR3-Diagnostics/session-<timestamp>-<pid>.log` inside the app's container. Retrieve the newest file through Files or Finder file sharing after approximately two minutes of startup, if possible. A crash before the helper constructor runs may require a device crash report instead.
+
+`MISSING_OR_ERROR` records a failed filesystem probe; it does not by itself establish that a mandatory asset is missing. Read it alongside the `ENGINE` download messages. An HD build should identify its detour in the `BUILD` record and use the high-resolution family for actual atlas lookups. The old `Res order` output alone is not conclusive.
+
+The limit is 8 MiB per session. The logger attempts to omit credential-related engine messages, but inspect and redact a log before publishing it.
+
 ## Texture investigation
 
 GUI `.pvr.z` files had a four-byte decompressed-size prefix, a zlib stream and a legacy 52-byte PVR v2 header. The examined set included raw RGBA8888/16-bit/RGB888 and PVRTC 2/4 bpp formats. The `.ios.atlas` files were XML with named image dimensions and page/position records.

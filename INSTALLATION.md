@@ -1,119 +1,96 @@
-# Build and installation
+# Install on iPhone SE 3
 
-## 1. Prepare the inputs
+**No Python, Xcode or compiling is needed to install the ready-made IPA.** You need your iPhone SE 3, a computer with [Sideloadly](https://sideloadly.io/), a USB cable and your Apple ID.
 
-You need a Mac with Apple Command Line Tools, Python 3 (3.13 was tested), enough disk space for the original and generated IPA, an iPhone SE 3, and your normal sideloading account/tool. The original cache is about 5.5 GB as a ZIP and about 8.26 GB unpacked; allow additional free space for import and installation.
+## 1. Download the fixed IPA
 
-Download the original `RR3-DevOps-v1.0-Production-Quality.ipa` from the upstream [v1.0-4k release](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-4k). Its published SHA-256, also verified locally, is:
+**[Download RR3-SE3-HD-Test-v1.ipa](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/releases/download/v1.0-se3/RR3-SE3-HD-Test-v1.ipa)** — about 1.37 GB.
 
-```text
-f73da1ec286dc36fe1bda8d4ff6c7d67fe844c741a67254d3e05bca38b69548f
-```
+On the [release page](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/releases/tag/v1.0-se3), choose this `.ipa` under **Assets**. The automatically generated “Source code” ZIP is for developers.
 
-Use the original package before sideloading/re-signing. Do not use an already installed/exported or already patched IPA as the builder input. The builder validates the exact executable and EDS bytes, not just a version string. A locally repackaged ARM64 archive with identical checked contents is also accepted.
+> **Installation base:** [RR3 DevOps v1.0 Production Quality, game version 14.0.1](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-4k). The fixed IPA already includes this base and our SE 3 fix. Sideload it directly. The original upstream IPA is only needed for the optional [build-from-source workflow](BUILD.md).
 
-For a new installation, obtain all three asset-cache parts from the upstream [v1.0-cache release](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-cache). Verify the parts against the upstream [checksums](https://github.com/Indegosblade/RR3-DevOps/blob/main/SHA256SUMS.txt), then join them in their original order:
+**Already have the game and cache?** Back up your save/data, leave the app installed, and install this IPA as an update. Use the same Apple ID and bundle-ID setting as before. Skip step 3 if the cache is already imported.
+
+## 2. Install with Sideloadly
+
+1. Open [Sideloadly](https://sideloadly.io/) on your computer.
+2. Connect and unlock your iPhone. Select it in **iDevice**.
+3. Drag `RR3-SE3-HD-Test-v1.ipa` into Sideloadly.
+4. Enter or select your Apple ID.
+5. Open **Advanced Options** and use these settings:
+
+| Sideloadly option | What to choose |
+|---|---|
+| **Use automatic bundle ID** | Keep the default for a new install. For an update, use the same setting and Apple ID as before; if you previously used a custom ID, keep that exact ID. |
+| **Enable File Sharing** | Enable it so diagnostic logs can be retrieved if needed. |
+| **Inject dylibs/frameworks** | Leave off. The fix and logger are already included in the IPA. |
+| App name/version, custom entitlements, older-iOS and device compatibility options | Leave at their defaults unless your existing signing setup requires otherwise. |
+
+Click **Start**, wait until installation finishes, and complete any account or iPhone trust/developer-mode steps requested by Sideloadly or iOS. Launch the installed **RR3 SE3 HD Test** app.
+
+**If you are updating:** do not delete the old app to fix a signing error. Deleting it can remove your save and imported cache. Check the signing account and bundle ID first.
+
+## 3. Import the cache — only if needed
+
+**If the matching cache is already imported, skip to step 4.**
+
+The game needs the separate [RR3 DevOps v1.0 asset cache](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-cache). If you already have the complete `Caches_ipastore.zip`, use it and skip the downloads below.
+
+For a fresh installation, download all three parts into the same folder on your computer:
+
+| File | Download |
+|---|---|
+| Cache part 1 | [part00](https://github.com/Indegosblade/RR3-DevOps/releases/download/v1.0-cache/RR3-DevOps-v1.0-Asset-Cache.zip.part00) |
+| Cache part 2 | [part01](https://github.com/Indegosblade/RR3-DevOps/releases/download/v1.0-cache/RR3-DevOps-v1.0-Asset-Cache.zip.part01) |
+| Cache part 3 | [part02](https://github.com/Indegosblade/RR3-DevOps/releases/download/v1.0-cache/RR3-DevOps-v1.0-Asset-Cache.zip.part02) |
+
+Verify the parts against the upstream [checksums](https://github.com/Indegosblade/RR3-DevOps/blob/main/SHA256SUMS.txt). Together they form a roughly 5.52 GB ZIP; the unpacked cache needs about 8.26 GB, plus room for the app and import process.
+
+<details>
+<summary><strong>Only have the three parts? Join them into one ZIP</strong></summary>
+
+On a Mac, if all three parts are in **Downloads**, open **Terminal** and paste this once. It joins the parts; it does not build the game or need Python. If a completed ZIP already exists, it leaves it untouched.
 
 ```sh
-cat RR3-DevOps-v1.0-Asset-Cache.zip.part00 \
-    RR3-DevOps-v1.0-Asset-Cache.zip.part01 \
-    RR3-DevOps-v1.0-Asset-Cache.zip.part02 > Caches_ipastore.zip
+cd ~/Downloads
+if [ ! -e Caches_ipastore.zip ]; then
+  cat RR3-DevOps-v1.0-Asset-Cache.zip.part00 \
+      RR3-DevOps-v1.0-Asset-Cache.zip.part01 \
+      RR3-DevOps-v1.0-Asset-Cache.zip.part02 > Caches_ipastore.zip
+fi
 ```
 
-Keep the resulting ZIP intact for the in-app importer. If that cache is already imported in your working installation, keep it; an update does not automatically require another import. The upstream [deployment guide](https://github.com/Indegosblade/RR3-DevOps/blob/main/docs/INSTALLATION.md) describes the original importer workflow.
+For Windows joining instructions, see the [upstream cache release](https://github.com/Indegosblade/RR3-DevOps/releases/tag/v1.0-cache).
 
-## 2. Build the HD fix
+</details>
 
-Clone or download this repository, open a terminal in its folder, and run:
+Then import the completed ZIP:
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python build.py \
-  --input "/path/to/RR3-DevOps-v1.0-Production-Quality.ipa"
-```
+1. Transfer `Caches_ipastore.zip` to the iPhone, for example with AirDrop, and save it somewhere you can find in **Files**. Keep it as a ZIP.
+2. Open **RR3 SE3 HD Test**. Tap the screen twice with **three fingers at the same time** to open the existing cache importer.
+3. Choose its **first import option**, then select `Caches_ipastore.zip`.
+4. Wait for the import to finish. Close the game completely and reopen it.
 
-The output is:
+The importer comes from the upstream preserved package. Its [original deployment guide](https://github.com/Indegosblade/RR3-DevOps/blob/main/docs/INSTALLATION.md) provides additional details.
 
-```text
-dist/RR3-SE3-HD-Test-v1.ipa
-dist/RR3-SE3-HD-Test-v1.ipa.report.json
-dist/SHA256SUMS.txt
-```
+## 4. Check that it works
 
-The builder runs native and emulated checks, compiles the helper, verifies local code signatures, validates the completed ZIP, and checks that the input hash is unchanged. Existing output IPAs are never overwritten. Use a different `--output-dir` for another build.
+Open the main menu and garage, start a race, then close the game completely and reopen it with the internet disconnected. Check that menus and touch targets look correct.
 
-For both the unmodified-selection diagnostic control and the HD fix:
+These steps were reported working on the tested SE 3. Some optional events may still need assets absent from the preserved cache.
 
-```sh
-.venv/bin/python build.py --input "/path/to/original.ipa" --variant both
-```
+## If something goes wrong
 
-To validate the input and run tests without producing an IPA:
+| Problem | Next step |
+|---|---|
+| Still asks for 33 MB | Confirm you installed **RR3 SE3 HD Test** and that the cache is imported into that app. |
+| Signing/install error | Check Sideloadly's error. For an update, keep the same Apple ID and bundle ID; leave the existing game installed. |
+| Cache importer cannot find the ZIP | Save the complete ZIP in Files first. Select the joined ZIP, not one of the three parts. |
+| Crash or incorrect menus | Keep the latest log and restore your original IPA using the same signing setup and your backup. |
 
-```sh
-.venv/bin/python build.py --input "/path/to/original.ipa" --check-only
-```
+For a useful log, leave the game open for about two minutes if possible. Retrieve the newest file from the app's shared **RR3-Diagnostics** folder through Finder file sharing or Files. Logs stay local; review and redact them before sharing publicly. See [technical diagnostics](TECHNICAL.md#reading-the-diagnostic-log) for interpretation.
 
-The tested helper build uses public Darwin/CoreFoundation APIs with macOS SDK headers and explicit iOS linker interface descriptions. It produces an ARM64 iOS 13+ Mach-O; a complete iOS SDK is not required for this workflow. This specific technique was exercised during the successful device test. It is not a substitute for testing a new compiler or device combination.
+Re-signing/refresh is handled by your Apple account and sideloading tool. Keep your original IPA and backup for rollback.
 
-## 3. Preserve an existing installation
-
-Before replacing an installed copy, back up the iPhone and preserve the game's save/data. Keep the original IPA and cache for rollback.
-
-Use the same Apple ID and **effective bundle identifier** as the existing installation. If the original sideload used automatic bundle IDs, keep that setting with the same account. If it used a custom identifier, use the same custom value. The package's base identifier is `com.ea.realracing3.inc`, but a signing tool may transform it.
-
-Install as an update. Do not delete the existing game just to make installation proceed: deleting it can remove its save and imported cache. Stop and resolve an identifier or signing mismatch first. Matching identifiers can preserve the container, but are not a replacement for a backup.
-
-## 4. Re-sign and sideload
-
-The generated IPA contains locally verified **ad hoc** signatures. These are not Apple account/device installation authorization. Re-sign through [Sideloadly](https://sideloadly.io/) or your established sideloading workflow.
-
-In Sideloadly:
-
-1. Connect/unlock the iPhone and select it.
-2. Load `RR3-SE3-HD-Test-v1.ipa`.
-3. Select the same Apple account used for the existing installation, if applicable.
-4. Keep the matching bundle-ID setting described above.
-5. Enable File Sharing so the diagnostic logs are accessible. The IPA already requests Documents sharing.
-6. Leave additional tweak injection off: `RR3Diagnostics.dylib` is already embedded and referenced.
-7. Leave app-name/version overrides, custom entitlements and compatibility overrides unchanged unless your established signing workflow requires them.
-8. Start signing and installation. Complete any normal device/account trust step requested by iOS or your signing tool.
-
-No optional RR3 DevOps overlay injection is needed for this patch. Signing expiration/refresh remains governed by your Apple account and sideloading tool.
-
-## 5. Import the cache, if needed
-
-For a fresh installation, place the intact `Caches_ipastore.zip` somewhere accessible from the iPhone Files app. In the preserved game's importer, use a three-finger double-tap, choose the cache ZIP, and wait for completion. Force-quit the app and reopen it afterward. This importer is inherited from the upstream package, not implemented here.
-
-Do not repeat a completed import merely because you updated the IPA. If required data is absent, use the logs to check the actual paths first.
-
-## 6. Verify offline operation
-
-Check launch and entry to the main menu, garage access, a race, and a full app close/relaunch without an internet connection. Also check image scale, clipping and touch targets.
-
-Those basic steps were reported working on the tested SE 3. Optional events whose high-resolution assets are absent from the original cache may still request downloads; this patch does not generate missing content or restore servers.
-
-## 7. Collect diagnostics
-
-Logs are written inside the app's own container:
-
-```text
-Documents/RR3-Diagnostics/session-<timestamp>-<pid>.log
-```
-
-Retrieve them from the app's shared documents through Files or Finder file sharing. If startup fails or requests data, leave the app open for approximately two minutes if possible and collect the latest log.
-
-`MISSING_OR_ERROR` means a failed filesystem probe, not necessarily a missing mandatory asset. Interpret it alongside the `ENGINE` download messages. The HD log should identify its detour in the `BUILD` record. The actual atlas lookups should use the high-resolution family; the old `Res order` enumeration alone is not conclusive because the explicit override bypasses that lookup order.
-
-Logs stay local, with an 8 MiB limit per session. The logger attempts to omit credential-related engine messages, but inspect and redact a log before posting it publicly. This repository intentionally excludes the original raw device log.
-
-## Troubleshooting and rollback
-
-- **Unsupported input:** obtain the exact upstream original, not a re-signed or different-version package. The error is deliberate.
-- **Output already exists:** choose a new output directory; the builder will not overwrite it.
-- **33 MB remains:** check that the HD IPA was installed, the log identifies the HD detour, and the existing cache is in the app's active container. Then inspect the requested file names.
-- **Crash or incorrect GUI:** preserve the log and restore the known original package with the same signing identity, following your normal backup/restore procedure.
-- **No log:** check that the new app launched and that its Documents sharing is accessible. A crash before the constructor runs may require a device crash report instead.
-
-Keep your original package and backup. The patch changes live code/profile selection in the app package, not a saved graphics preference; normal game execution can still update its own files.
+Want to reproduce the patch? The separate [build guide](BUILD.md) contains the Python commands; they are optional for installation.
