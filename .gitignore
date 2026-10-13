@@ -1,0 +1,19 @@
+# Local inputs, diagnostics and generated game packages
+diagnosis/
+publication/
+.publish-upload/
+inputs/
+build/
+dist/
+*.ipa
+*.zip
+*.part[0-9]*
+*.log
+*.dylib
+*.o
+*.dSYM/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
