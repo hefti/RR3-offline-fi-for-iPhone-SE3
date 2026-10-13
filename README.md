@@ -1,1 +1,1 @@
-# RR3-offline-fi-for-iPhone-SE3
+# RR3-offline-fix-for-iPhone-SE3
