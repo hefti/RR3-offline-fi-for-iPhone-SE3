@@ -1,5 +1,7 @@
 # Install on iPhone SE 3
 
+**Previously worked, but now asks for 661 MB after an iOS update?** Follow the [cache recovery guide with screenshot](docs/cache-recovery.md). The confirmed fix was to re-import the existing cache ZIP through the blue folder menu. Reinstalling the IPA was not needed.
+
 **Already working?** Keep your current installation and imported cache. The owner accepts the occasional black backgrounds; the missing promotional video is optional restoration work. This guide is for a needed installation or a deliberate update. See [current status](STATUS.md) before changing a working setup.
 
 **No Python, Xcode or compiling is needed to install the ready-made IPA.** You need your iPhone SE 3, a computer with [Sideloadly](https://sideloadly.io/), a USB cable and your Apple ID.
@@ -70,8 +72,8 @@ For Windows joining instructions, see the [upstream cache release](https://githu
 Then import the completed ZIP:
 
 1. Transfer `Caches_ipastore.zip` to the iPhone, for example with AirDrop, and save it somewhere you can find in **Files**. Keep it as a ZIP.
-2. Open **RR3 SE3 HD Test**. Tap the screen twice with **three fingers at the same time** to open the existing cache importer.
-3. Choose its **first import option**, then select `Caches_ipastore.zip`.
+2. Open **RR3 SE3 HD Test** and tap the **blue folder icon** at the upper right of the loading screen. The package also provides the three-finger double-tap gesture to open the file assistant.
+3. Choose the **first green row, `导入数据包` — Import data package**, then select `Caches_ipastore.zip`. The second row, `导入应用存档`, imports a save instead; it is not the cache-import option.
 4. Wait for the import to finish. Close the game completely and reopen it.
 
 The importer comes from the upstream preserved package. Its [original deployment guide](https://github.com/Indegosblade/RR3-DevOps/blob/main/docs/INSTALLATION.md) provides additional details.
@@ -87,6 +89,7 @@ These steps were reported working on the tested SE 3. Some optional events may s
 | Problem | Next step |
 |---|---|
 | Still asks for 33 MB | Confirm you installed **RR3 SE3 HD Test** and that the cache is imported into that app. |
+| Previously worked; asks for 661 MB after an iOS update | Re-import the complete cache ZIP through **blue folder → `导入数据包`**, then fully close and reopen the game. See the [confirmed recovery](docs/cache-recovery.md). |
 | Signing/install error | Check Sideloadly's error. For an update, keep the same Apple ID and bundle ID; leave the existing game installed. |
 | Cache importer cannot find the ZIP | Save the complete ZIP in Files first. Select the joined ZIP, not one of the three parts. |
 | Crash or incorrect menus | Keep the latest log and restore your original IPA using the same signing setup and your backup. |

@@ -2,7 +2,11 @@
 
 **RR3 offline - fix for iPhone SE3** fixes the **33 MB additional-data download stall** in the preserved Real Racing 3 14.0.1 iOS package.
 
-## Current working baseline — 13 October 2026
+## After an iOS update: stuck at 661 MB?
+
+**[Recovery guide with screenshot →](docs/cache-recovery.md)** Re-import the matching `Caches_ipastore.zip` using the **blue folder icon → first green row, `导入数据包` (Import data package)**, then fully close and reopen the game. The owner confirmed this fixed the 661 MB stall after updating to iOS 26.7.1. No new IPA, Sideloadly installation or Python was needed. The existing HD patch was still active in the diagnostic log.
+
+## Working baseline and recovery — updated 17 October 2026
 
 **The owner reports that the current installation works**, with perhaps 1–2 black backgrounds that they consider acceptable. Preserve this working setup; resolving those cosmetic gaps or completing the asset inventory is optional and does not require reinstalling or replacing the current cache.
 
@@ -18,7 +22,7 @@ See [current status and preservation](STATUS.md), the [optional roadmap](ROADMAP
 
 1. Download the fixed IPA above and load it into [Sideloadly](https://sideloadly.io/).
 2. Connect your iPhone SE 3 and install. For an update, keep the same Apple ID and bundle-ID setting, and keep the existing app installed.
-3. Keep your already imported cache. For a fresh installation, import `Caches_ipastore.zip` through the game's three-finger double-tap menu.
+3. Keep your working imported cache. For a fresh installation, import `Caches_ipastore.zip` through the **blue folder icon → `导入数据包` (Import data package)**.
 4. Reopen the game and try a race offline.
 
 **[Simple installation guide, including Sideloadly settings →](INSTALLATION.md)**
@@ -49,6 +53,7 @@ The Git tree contains source code and documentation. The ready-made IPA is attac
 | [STATUS.md](STATUS.md) | Working baseline, accepted gaps, exact missing-video record and preservation procedure |
 | [ROADMAP.md](ROADMAP.md) | Optional restoration/graphics tasks and criteria for accepting a future change |
 | [INSTALLATION.md](INSTALLATION.md) | Download, Sideloadly settings, cache import and offline test |
+| [Cache recovery with screenshot](docs/cache-recovery.md) | Owner-confirmed recovery from the 661 MB stall after iOS 26.7.1 |
 | [BUILD.md](BUILD.md) | Optional: reproduce the IPA from the original upstream input |
 | [TECHNICAL.md](TECHNICAL.md) | Failure mechanism, exact patch locations, diagnostic behavior and format findings |
 | [VALIDATION.md](VALIDATION.md) | Device result, baseline evidence, hashes and validation limits |

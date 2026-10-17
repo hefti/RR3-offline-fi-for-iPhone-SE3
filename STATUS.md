@@ -1,12 +1,18 @@
 # Current status and preservation
 
-Updated: **13 October 2026**.
+Updated: **17 October 2026**.
+
+## Recovered after iOS 26.7.1 update
+
+The owner reported that updating only iOS from 26.6.1 to 26.7.1 was followed by a **661 MB** download stall. The supplied log still detected the HD fix but could not open the imported base-cache ledger. **Re-importing the existing matching cache ZIP through the blue folder menu resolved the problem, according to the owner.** See the [step-by-step recovery and screenshot](docs/cache-recovery.md) and [validation record](VALIDATION.md).
+
+The existing `v1.0-se3` IPA remains the reference package. This recovery needed no new IPA or code change. The exact reason the cache/ledger became unavailable is unproven; no post-recovery log or separate new race/offline-start confirmation was supplied.
 
 ## Working baseline
 
 The owner reports that the current RR3 installation works. They mention perhaps **1–2 black backgrounds**, which they consider acceptable. This is the baseline to preserve while optional restoration work is considered.
 
-The existing repository records Real Racing 3 **14.0.1**, the RR3 DevOps v1.0 package/cache and an **iPhone SE (3rd generation)** running reported **iOS 26.6.1**. Its earlier validation record describes owner-reported launch, a race and an offline cold restart. The latest feedback confirms general use, without a new device log, precise screen list or complete event coverage. See [VALIDATION.md](VALIDATION.md) for the historical evidence and its limits.
+The original baseline records Real Racing 3 **14.0.1**, the RR3 DevOps v1.0 package/cache and an **iPhone SE (3rd generation)** running reported **iOS 26.6.1**. Its earlier validation record describes owner-reported launch, a race and an offline cold restart, followed by acceptance of the occasional black backgrounds. The later iOS 26.7.1 incident and recovery are recorded above. See [VALIDATION.md](VALIDATION.md) for the evidence and its limits.
 
 Reference package: [`v1.0-se3` release](https://github.com/hefti/RR3-offline-fix-for-iPhone-SE3/releases/tag/v1.0-se3), asset `RR3-SE3-HD-Test-v1.ipa`. The recorded SHA-256 before re-signing is:
 
@@ -49,8 +55,10 @@ This is the procedure for future work; completion of a fresh backup is **not** c
 3. Use a separate source branch and separate package/cache copies for experiments. Preserve original input bytes and use a new output location. The existing builder already refuses to overwrite output IPAs.
 4. Promote a candidate only after relevant device checks and a documented rollback path. A documentation change needs no device installation. If a device update is actually needed, retain the signing account/effective bundle ID and follow [INSTALLATION.md](INSTALLATION.md).
 
-## What was checked in this update
+## What was checked in the 13 October documentation review
 
 The repository source/documentation, existing issues, public Projects page and release metadata were inspected. Two optional issues were created and the documentation was updated. No game/device test, build, fresh inventory scan, file recovery, backup or cache modification was performed. Historical test results remain attributed to their existing record and the owner.
+
+For the 17 October update, the supplied incident log was analyzed and the owner's recovery confirmation was recorded. The loading-screen screenshot is included with permission. No code, release asset or original input was changed.
 
 For priorities and future acceptance criteria, see [ROADMAP.md](ROADMAP.md).

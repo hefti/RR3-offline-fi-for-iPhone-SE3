@@ -1,5 +1,13 @@
 # Validation record
 
+## Cache recovery — 17 October 2026
+
+The owner reported a **661 MB** download stall after updating the same iPhone SE 3 from **iOS 26.6.1 to 26.7.1**, with no game reinstall or re-signing. The supplied startup log was analyzed directly: it detected the HD detour, the SE 3 profile and `2048x1536` GUI override, but opening `Library/Caches/asset_list_base.txtCache.txt` failed with `errno=2` (`ENOENT`). The requested total was **693,986,702 bytes** (about 661.84 MiB).
+
+The owner then confirmed that importing the existing matching **`Caches_ipastore.zip`** through the **blue folder → first green row, `导入数据包` (Import data package)** resolved the problem. No replacement IPA or code change was required. A post-recovery log and a separate new race/offline-start confirmation were not supplied. This one-device result does not establish whether iOS deleted cache files, metadata alone became unavailable, or the game looked in a different location.
+
+See the [recovery instructions, screenshot and sanitized diagnostic evidence](docs/cache-recovery.md). Raw device logs remain excluded. This publication changes documentation only; no IPA was rebuilt and no original archive or phone data was modified by the documentation work.
+
 ## Documentation review — 13 October 2026
 
 The owner's latest feedback is that the installation works, with perhaps 1–2 black backgrounds that are acceptable. The earlier inventory count (24,791 present / 24,792 listed) and missing-video record are retained in [STATUS.md](STATUS.md), with optional follow-up in [ROADMAP.md](ROADMAP.md).
@@ -12,7 +20,7 @@ Date: **13 October 2026**. Device: **iPhone SE (3rd generation)**. Reported OS: 
 
 The owner first installed the diagnostic control and supplied a startup log. After installing the HD variant, the owner reported that it worked. The owner then reported success following instructions to start a race and fully close/relaunch the game offline.
 
-This is a user-reported functional result on one device. The diagnostic control log was analyzed directly; an HD runtime log or video was not supplied. It does not establish coverage of every car, track, event, iOS release, long-session behavior or device model.
+This is a user-reported functional result on one device. The diagnostic control log was analyzed directly; an HD runtime log or video was not supplied for that original test. A later HD startup log was supplied for the 17 October cache incident described above. Neither result establishes coverage of every car, track, event, iOS release, long-session behavior or device model.
 
 ## Baseline log findings
 
